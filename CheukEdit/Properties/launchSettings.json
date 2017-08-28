@@ -1,0 +1,8 @@
+{
+  "profiles": {
+    "CheukEdit": {
+      "commandName": "Project",
+      "commandLineArgs": "Buffer.cs"
+    }
+  }
+}
