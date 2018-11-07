@@ -1,16 +1,21 @@
-<Project Sdk="Microsoft.NET.Sdk">
+﻿<Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
     <OutputType>Exe</OutputType>
-    <TargetFramework>netcoreapp1.0</TargetFramework>
+    <TargetFrameworks>
+      <!-- .NET Core -->
+      netcoreapp1.0;netcoreapp1.1;
+      netcoreapp2.0;netcoreapp2.1;
+      <!--netcoreapp2.2;netcoreapp3.0;-->
+    </TargetFrameworks>
     <StartupObject>CheukEdit.Program</StartupObject>
-    <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
+    <GeneratePackageOnBuild>false</GeneratePackageOnBuild>
     <NeutralLanguage>en-US</NeutralLanguage>
     <RepositoryUrl>https://github.com/McNeight/CheukEdit</RepositoryUrl>
     <PackageLicenseUrl>https://github.com/McNeight/CheukEdit/blob/master/LICENSE</PackageLicenseUrl>
     <Authors>Neil McNeight</Authors>
     <Company />
-    <Copyright>© 2017 Neil McNeight</Copyright>
+    <Copyright>Copyright © 2017 Neil McNeight</Copyright>
     <PackageProjectUrl>https://cheukyin699.github.io/tutorial/c++/2015/02/01/ncurses-editor-tutorial-01.html</PackageProjectUrl>
   </PropertyGroup>
 

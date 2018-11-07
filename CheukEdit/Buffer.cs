@@ -1,19 +1,18 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Threading.Tasks;
 
 namespace CheukEdit
 {
     /// <summary>
     /// 
     /// </summary>
-    class Buffer
+    internal class Buffer
     {
-        public List<String> lines;
+        public List<string> lines;
 
         public Buffer()
         {
-            lines = new List<String>();
+            lines = new List<string>();
         }
 
         /* Some helper functions */
@@ -41,11 +40,15 @@ namespace CheukEdit
         /// <returns></returns>
         public string remTabs(string line)
         {
-            int tab = line.IndexOf('\t');
+            var tab = line.IndexOf('\t');
             if (tab == -1)
+            {
                 return line;
+            }
             else
+            {
                 return remTabs(line.Replace("\t", "    "));
+            }
         }
 
         public int Search(string query)

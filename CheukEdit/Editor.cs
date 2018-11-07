@@ -1,12 +1,10 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Diagnostics;
 using System.IO;
-using System.Text;
 
 namespace CheukEdit
 {
-    class Editor
+    internal class Editor
     {
         private int x, y;
         private char mode;
@@ -34,10 +32,10 @@ namespace CheukEdit
 
             try
             {
-                using (FileStream fs = new FileStream(filename, FileMode.Open))
+                using (var fs = new FileStream(filename, FileMode.Open))
                 {
                     // Open the text file using a stream reader.
-                    using (StreamReader sr = new StreamReader(fs))
+                    using (var sr = new StreamReader(fs))
                     {
                         while (!sr.EndOfStream)
                         {
@@ -90,17 +88,29 @@ namespace CheukEdit
         private void moveUp()
         {
             if (y - 1 >= 0)
+            {
                 y--;
+            }
+
             if (x >= buff.lines[y].Length)
+            {
                 x = buff.lines[y].Length;
+            }
+
             Console.SetCursorPosition(x, y);
         }
         private void moveDown()
         {
             if (y + 1 < Console.WindowHeight - 1 && y + 1 < buff.lines.Count)
+            {
                 y++;
+            }
+
             if (x >= buff.lines[y].Length)
+            {
                 x = buff.lines[y].Length;
+            }
+
             Console.SetCursorPosition(x, y);
         }
 
@@ -136,12 +146,12 @@ namespace CheukEdit
 
             try
             {
-                using (FileStream fs = new FileStream(filename, FileMode.Create))
+                using (var fs = new FileStream(filename, FileMode.Create))
                 {
                     // Open the text file using a stream reader.
-                    using (StreamWriter sw = new StreamWriter(fs))
+                    using (var sw = new StreamWriter(fs))
                     {
-                        for(int i = 0; i < buff.lines.Count; i++)
+                        for (var i = 0; i < buff.lines.Count; i++)
                         {
                             sw.WriteLine(buff.lines[i]);
                         }
@@ -308,7 +318,7 @@ namespace CheukEdit
         /// </summary>
         public void printBuff()
         {
-            for (int i = 0; i < Console.WindowHeight - 1; i++)
+            for (var i = 0; i < Console.WindowHeight - 1; i++)
             {
                 if (i >= buff.lines.Count)
                 {
@@ -330,8 +340,8 @@ namespace CheukEdit
         /// </summary>
         public void printStatusLine()
         {
-            ConsoleColor origF = Console.ForegroundColor;
-            ConsoleColor origB = Console.BackgroundColor;
+            var origF = Console.ForegroundColor;
+            var origB = Console.BackgroundColor;
             Console.SetCursorPosition(0, Console.WindowHeight - 1);
             Console.ForegroundColor = origB;
             Console.BackgroundColor = origF;
@@ -357,6 +367,7 @@ namespace CheukEdit
                     // Insert mode
                     status = "Insert Mode";
                     break;
+                case 'q':
                 case 'x':
                     // Exiting
                     status = "Exiting";
